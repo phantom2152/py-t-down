@@ -1,0 +1,305 @@
+body {
+    background-color: #f8f9fa;
+    padding-bottom: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    border: none;
+}
+.card-header {
+    background-color: #f1f5f9;
+    border-bottom: 1px solid #e4e9f0;
+    padding: 1rem;
+}
+.card-body {
+    padding: 1.25rem;
+}
+.progress {
+    height: 15px;
+    border-radius: 10px;
+    background-color: #e9ecef;
+    margin-bottom: 0.5rem;
+}
+.progress-bar {
+    background-color: #4287f5;
+    transition: width 0.3s ease;
+}
+.progress-complete .progress-bar {
+    background-color: #28a745;
+}
+.files-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+.file-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+.file-item:last-child {
+    border-bottom: none;
+}
+.file-item:hover {
+    background-color: #f8f9fa;
+}
+.dragdrop-area {
+    border: 2px dashed #dee2e6;
+    border-radius: 10px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.dragdrop-area:hover, .dragdrop-area.dragover {
+    border-color: #6c757d;
+    background-color: #f1f5f9;
+}
+.main-container {
+    max-width: 900px;
+}
+.torrent-status {
+    font-size: 0.9rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+.torrent-status-item {
+    display: flex;
+    align-items: center;
+}
+.torrent-status-item i {
+    margin-right: 6px;
+    color: #6c757d;
+}
+.completed-torrents {
+    border-top: 1px solid #dee2e6;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+.navbar-brand {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+.navbar-brand i {
+    color: #4287f5;
+    margin-right: 8px;
+}
+.btn-primary {
+    background-color: #4287f5;
+    border-color: #3278e6;
+}
+.btn-primary:hover {
+    background-color: #3278e6;
+    border-color: #2269d7;
+}
+.metadata-spinner {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.stat-card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.stat-label {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+.stat-value {
+    font-weight: 500;
+}
+.eta-badge {
+    background-color: #e9ecef;
+    color: #495057;
+    font-size: 0.8rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+}
+.dark-mode-toggle {
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 15px;
+}
+.dark-mode-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Toast notifications */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+.custom-toast {
+    min-width: 250px;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: white;
+    border-left: 4px solid #4287f5;
+    animation: slideIn 0.3s ease;
+}
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+.toast-success { border-left-color: #28a745; }
+.toast-error { border-left-color: #dc3545; }
+.toast-info { border-left-color: #17a2b8; }
+.toast-warning { border-left-color: #ffc107; }
+
+/* Folder structure styles */
+.folder-structure {
+    list-style-type: none;
+    padding-left: 0;
+}
+.folder-structure li {
+    padding: 6px 0;
+}
+.folder-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+.folder-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.dark-mode .folder-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+.folder-item i {
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+.folder-contents {
+    padding-left: 24px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+}
+.folder-open > .folder-contents {
+    max-height: 1000px;
+}
+.folder-item .actions {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+    opacity: 0.4;
+    transition: opacity 0.2s;
+}
+.folder-item:hover .actions {
+    opacity: 1;
+}
+.file-size {
+    margin-left: 12px;
+    color: #6c757d;
+    font-size: 0.85rem;
+}
+.folder-toggle {
+    transition: transform 0.2s;
+}
+.folder-open .folder-toggle {
+    transform: rotate(90deg);
+}
+
+/* Dark mode styles */
+.dark-mode {
+    --bs-body-bg: #212529;
+    --bs-body-color: #e9ecef;
+}
+.dark-mode .card {
+    background-color: #343a40;
+    border-color: #495057;
+}
+.dark-mode .card-header {
+    background-color: #2b3035;
+    border-color: #495057;
+}
+.dark-mode .progress {
+    background-color: #495057;
+}
+.dark-mode .list-group-item {
+    background-color: #343a40;
+    border-color: #495057;
+    color: #e9ecef;
+}
+.dark-mode .form-control {
+    background-color: #495057;
+    border-color: #6c757d;
+    color: #e9ecef;
+}
+.dark-mode .form-control::placeholder {
+    color: #adb5bd;
+}
+.dark-mode .dragdrop-area {
+    border-color: #495057;
+    color: #e9ecef;
+}
+.dark-mode .dragdrop-area:hover, .dark-mode .dragdrop-area.dragover {
+    border-color: #6c757d;
+    background-color: #2b3035;
+}
+.dark-mode .custom-toast {
+    background-color: #343a40;
+    color: #e9ecef;
+}
+.dark-mode .nav-tabs .nav-link {
+    color: #adb5bd;
+}
+.dark-mode .nav-tabs .nav-link.active {
+    background-color: #343a40;
+    border-color: #495057;
+    color: #e9ecef;
+}
+.dark-mode .stat-card {
+    background-color: #2b3035;
+}
+.dark-mode .modal-content {
+    background-color: #343a40;
+    border-color: #495057;
+}
+.dark-mode .modal-header, .dark-mode .modal-footer {
+    border-color: #495057;
+}
+.dark-mode .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+.dark-mode .text-muted {
+    color: #adb5bd !important;
+}
+.dark-mode .eta-badge {
+    background-color: #495057;
+    color: #e9ecef;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .torrent-status {
+        grid-template-columns: 1fr;
+    }
+}

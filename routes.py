@@ -4,7 +4,7 @@ import tempfile
 import threading
 import time
 from urllib.parse import unquote
-from flask import jsonify, request, send_file, abort
+from flask import jsonify, render_template, request, send_file, abort
 
 import config
 import torrent_manager
@@ -16,7 +16,7 @@ def init_routes(app, socketio):
     @app.route('/')
     def index():
         """Render the main page"""
-        return app.send_static_file('index.html')
+        return render_template('index.html')
 
     @app.route('/api/add_torrent', methods=['POST'])
     def add_torrent():
