@@ -4,4 +4,4 @@ endpoints:
 - name: p-t-down
   service:
      port: 5000
-  type: Rest
+  type: REST
