@@ -1,0 +1,68 @@
+# openapi.yaml
+openapi: 3.0.3
+info:
+  title: PyTorrent Web Client
+  description: A web-based torrent client built with Flask and libtorrent
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+paths:
+  /:
+    get:
+      summary: Main web interface
+      operationId: GetMainPage
+      responses:
+        "200":
+          description: Successful operation
+  
+  /api/add_torrent:
+    post:
+      summary: Add a new torrent
+      operationId: AddTorrent
+      responses:
+        "200":
+          description: Successful operation
+  
+  /api/torrent_status/{torrent_id}:
+    get:
+      summary: Get torrent status
+      operationId: GetTorrentStatus
+      parameters:
+        - name: torrent_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+  
+  /api/select_files/{torrent_id}:
+    post:
+      summary: Select files to download
+      operationId: SelectFiles
+      parameters:
+        - name: torrent_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+  
+  /api/list_completed:
+    get:
+      summary: List completed torrents
+      operationId: ListCompleted
+      responses:
+        "200":
+          description: Successful operation
+  
+  /api/healthz:
+    get:
+      summary: Health check
+      operationId: HealthCheck
+      responses:
+        "200":
+          description: Healthy response

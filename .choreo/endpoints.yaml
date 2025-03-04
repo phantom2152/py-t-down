@@ -1,0 +1,8 @@
+schemaVersion: "1.1"
+endpoints:
+  - name: PyTorrent Web Interface
+    port: 5000
+    type: REST
+    networkVisibility: Public
+    context: /
+    schemaFilePath: openapi.yaml
