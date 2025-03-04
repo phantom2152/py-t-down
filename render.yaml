@@ -1,0 +1,43 @@
+services:
+  # Define the Aria2 service
+  - type: web
+    name: aria2-ui
+    env: docker
+    dockerfilePath: ./Dockerfile.render # Using a custom Dockerfile for Render
+    plan: standard # Choose an appropriate plan based on your needs
+    
+    # Specify resources (adjust according to your needs)
+    scaling:
+      minInstances: 1
+      maxInstances: 1
+    
+    # Define health check
+    healthCheckPath: /ping
+    
+    # Set environment variables
+    envVars:
+      - key: PUID
+        value: 1000
+      - key: PGID
+        value: 1000
+      - key: SECRET
+        # Use a secret for secure value storage
+        sync: false
+      - key: ARIA2_SSL
+        value: "false"
+      - key: ENABLE_AUTH
+        value: "true"
+      - key: ARIA2_USER
+        # Use a secret for secure value storage
+        sync: false
+      - key: ARIA2_PWD
+        # Use a secret for secure value storage
+        sync: false
+      - key: TZ
+        value: "UTC"
+    
+    # Configure disk persistence for downloads
+    disk:
+      name: aria2-data
+      mountPath: /data
+      sizeGB: 10 # Adjust size as needed
