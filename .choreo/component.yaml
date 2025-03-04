@@ -1,0 +1,7 @@
+schemaVersion: 1.0
+# Endpoint configuration for PyTorrent
+endpoints:
+- name: p-t-down
+  service:
+     port: 5000
+  type: Web
