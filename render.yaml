@@ -1,43 +1,34 @@
 services:
-  # Define the Aria2 service
+  # Main service definition for Aria2 with UI
   - type: web
     name: aria2-ui
     env: docker
-    dockerfilePath: ./Dockerfile.render # Using a custom Dockerfile for Render
-    plan: standard # Choose an appropriate plan based on your needs
-    
-    # Specify resources (adjust according to your needs)
-    scaling:
-      minInstances: 1
-      maxInstances: 1
-    
-    # Define health check
-    healthCheckPath: /ping
-    
-    # Set environment variables
-    envVars:
-      - key: PUID
-        value: 1000
-      - key: PGID
-        value: 1000
-      - key: SECRET
-        # Use a secret for secure value storage
-        sync: false
-      - key: ARIA2_SSL
-        value: "false"
-      - key: ENABLE_AUTH
-        value: "true"
-      - key: ARIA2_USER
-        # Use a secret for secure value storage
-        sync: false
-      - key: ARIA2_PWD
-        # Use a secret for secure value storage
-        sync: false
-      - key: TZ
-        value: "UTC"
-    
-    # Configure disk persistence for downloads
+    dockerfilePath: ./Dockerfile
+    plan: starter # Choose the appropriate plan - free, starter, etc.
+    region: oregon # Choose the appropriate region for your needs
+    numInstances: 1
     disk:
       name: aria2-data
       mountPath: /data
-      sizeGB: 10 # Adjust size as needed
+      sizeGB: 10 # Adjust based on your needs
+    domains:
+      - aria2.yourdomain.com # Replace with your actual domain if you have one
+    envVars:
+      - key: PUID
+        value: "1000"
+      - key: PGID
+        value: "1000"
+      - key: SECRET
+        sync: false # This will prompt for the value during deployment
+      - key: ARIA2_USER
+        value: "admin" # Default admin username
+      - key: ARIA2_PWD
+        sync: false # This will prompt for the value during deployment
+      - key: ARIA2_SSL
+        value: "false"
+      - key: ARIA2_EXTERNAL_PORT
+        value: "443" # If using HTTPS through Render
+      - key: TZ
+        value: "UTC"
+    healthCheckPath: /
+    autoDeploy: true
